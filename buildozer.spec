@@ -5,7 +5,7 @@ package.domain = com.qxx
 source.dir = .
 source.include_exts = py,png,jpg,ttf,json,db
 source.include_patterns = fonts/*,*.json
-version = 1.0.0
+version = 1.2.0
 requirements = python3, kivy==2.3.1, requests
 orientation = portrait
 fullscreen = 0
@@ -15,6 +15,14 @@ android.minapi = 31
 android.ndk = 25b
 android.sdk = 36
 android.accept_sdk_license = True
+android.debug_build = 0
+android.archs = arm64-v8a, armeabi-v7a
+# Release 签名配置
+android.sign = release
+android.keystore = release.keystore
+android.keyalias = johnny
+android.storepass = qixincha2026
+android.keypass = qixincha2026
 log_level = 2
 warn_on_root = 0
 
