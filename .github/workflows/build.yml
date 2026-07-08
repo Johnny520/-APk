@@ -1,8 +1,5 @@
 name: Build APK
 
-# 触发：
-#   1) 推送 v* 标签（如 v1.2.0）→ 自动编译 release APK 并发布到 Release
-#   2) 手动在 Actions 页点 Run workflow → 仅编译存为 Artifact（调试用）
 on:
   push:
     tags:
@@ -35,18 +32,19 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y zip unzip git libltdl-dev
 
-      - name: Create release keystore
-        run: |
-          keytool -genkey -v -keystore release.keystore -alias johnny \
-            -keyalg RSA -keysize 2048 -validity 10000 \
-            -storepass qixincha2026 -keypass qixincha2026 \
-            -dname "CN=Johnny,O=qixincha,L=China,C=CN"
-
       - name: Install buildozer
         run: pip install buildozer cython==0.29.33
 
-      - name: Build release APK
-        run: buildozer android release
+      - name: Build APK
+        run: buildozer android debug
+
+      - name: Rename APK (去掉debug标记)
+        run: |
+          cd bin
+          APK=$(ls *.apk | head -1)
+          NEW_NAME=$(echo "$APK" | sed 's/-debug/-release/')
+          mv "$APK" "$NEW_NAME"
+          echo "Renamed: $APK -> $NEW_NAME"
 
       - name: Upload APK (artifact, 仅手动触发时)
         if: github.event_name == 'workflow_dispatch'
@@ -63,9 +61,8 @@ jobs:
           name: 企信查 ${{ github.ref_name }}
           tag_name: ${{ github.ref_name }}
           body: |
-            企信查 APK 自动构建产物（Android 12–16）
+            企信查 APK（Android 12–16）
             包名：com.qxx.johnny
             架构：arm64-v8a / armeabi-v7a
-            版本：release（非debug）
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
