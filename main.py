@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """企信查 - 天眼查风格企业信息查询 App (Kivy)。
 蓝系配色 + 底部4Tab导航 + 列表式设置页 + 空状态引导 + 全自适应。
-v1.3.0 - 修复闪退（安全导入 + Android可写路径 + 启动容错） + 全自适应 + Release描述
+v1.4.0 - 作者：文强哥 / Johnny520 (GitHub: Johnny520)；修复闪退（安全导入 + Android可写路径 + 启动容错） + 全自适应 + Release描述
 """
 import os
 import sys
@@ -49,7 +49,8 @@ try:
 except Exception as e:
     print(f"[企信查] legal 导入失败: {e}")
     legal = type("legal", (), {
-        "AUTHOR": "开发者", "WECHAT": "", "EMAIL": "",
+        "AUTHOR": "文强哥 / Johnny520", "GITHUB": "Johnny520",
+        "WECHAT": "", "EMAIL": "",
         "COPYRIGHT_YEAR": 2026,
         "DISCLAIMER": "本软件仅供学习研究使用。",
         "USER_AGREEMENT": "用户协议：仅供学习。",
@@ -658,7 +659,7 @@ class ProfileScreen(Screen):
 
         # ── 协议与关于 ──
         W(self._sec("📜  协议与关于"))
-        W(self._row("关于企信查", "v1.3.0  com.qxx.johnny", ">", self._show_about))
+        W(self._row("关于企信查", "v1.4.0  com.qxx.johnny", ">", self._show_about))
         W(self._row("用户协议", "", ">", self._show_agreement))
         W(self._row("隐私政策", "", ">", self._show_privacy))
         W(self._row("免责声明", "数据来源说明", ">", self._show_disclaimer))
@@ -743,7 +744,7 @@ class ProfileScreen(Screen):
                    emoji="🕷")
 
     def _edit_timeout(self):
-        cur = str(load_config().get("timeout", 10))
+        cur = str(load_config().get("timeout", 12))
         def _save(v):
             try:
                 if v.isdigit():
@@ -779,10 +780,11 @@ class ProfileScreen(Screen):
 
     def _show_about(self):
         info_popup("关于企信查",
-                   f"企信查 v1.3.0\n包名：com.qxx.johnny\n目标：Android 12–16\n\n"
+                   f"企信查 v1.4.0\n包名：com.qxx.johnny\n目标：Android 12–16\n\n"
                    f"类「天眼查」风格企业信息检索学习作品。\n\n"
-                   f"开发者：{legal.AUTHOR}\n微信：{legal.WECHAT}\n"
-                   f"邮箱：{legal.EMAIL}\n版权所有 © {legal.COPYRIGHT_YEAR}",
+                   f"开发者：{legal.AUTHOR}\nGitHub：{legal.GITHUB}\n"
+                   f"微信：{legal.WECHAT}\n邮箱：{legal.EMAIL}\n"
+                   f"版权所有 © {legal.COPYRIGHT_YEAR}",
                    emoji="💡")
 
     def _show_agreement(self):
@@ -1335,7 +1337,7 @@ class QXApp(App):
                 except Exception:
                     pass
             try:
-                Window.add_widget(new_root)
+              Window.add_widget(new_root)
             except Exception:
                 pass
         except Exception as e:

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """极简缓存，按 (source, key) 存 JSON，过期自动失效。
-v1.3.0 - 修复 Android 路径 + sqlite3 不可用时自动降级为 dict 缓存。
+v1.4.0 - 作者：文强哥 / Johnny520 (GitHub: Johnny520)；修复 Android 路径 + sqlite3 不可用时自动降级为 dict 缓存。
 """
 import os
 import json

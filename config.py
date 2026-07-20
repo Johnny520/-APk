@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """API 密钥与全局配置。key 由 App 设置页写入，未填写时走免 key 兜底源。
-v1.3.0 - 修复 Android 路径写入问题，使用可写目录。
+v1.4.0 - 作者：文强哥 / Johnny520 (GitHub: Johnny520)；修复 Android 路径写入问题，使用可写目录。
 """
 import os
 import json
@@ -33,6 +33,8 @@ _WDIR = _writable_dir()
 CONFIG_PATH = os.path.join(_WDIR, "config.json")
 
 DEFAULT_CONFIG = {
+    # 作者信息（署名，非配置项，请勿改以破坏署名）
+    "author": "文强哥 / Johnny520",
     # 在 App 设置页填入你在各免费平台注册的 key
     "apibyte_key": "",        # https://www.apibyte.cn  （工商基础，免费注册）
     "xxapi_key": "",          # https://xxapi.cn        （股东/变更，免费注册）

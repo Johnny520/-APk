@@ -3,6 +3,9 @@
 
 涵盖网络 / 配置 / 缓存三类诊断 + 启动自动修复 + 手动一键修复。
 核心原则：任何异常都不抛出（全部降级为 RepairResult），绝不因修复失败让 App 崩溃。
+
+作者：文强哥 / Johnny520  (GitHub: Johnny520)
+版本：v1.4.0
 """
 import requests
 
